@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <%- include('partials/headLinks') %>
+</head>
+
+<body>
+
+    <%- include('partials/header') %>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Airline Name</th>
+                <th>Destination </th>
+                <th>arrivalTime</th>
+            </tr>
+
+            <% if(flights.length>0) { %>
+                <% for (const flight of flights) { %>
+                    <tr>
+                        <td>
+                            <%= flight.airlineName %>
+                        </td>
+                        <td>
+                            <%= flight.destination %>
+                        </td>
+                        <td>
+                            <%= flight.arrivalTime %>
+                        </td>
+                    </tr>
+                    <%} %>
+                        <% }else{ %>
+                            <div>no flights</div>
+                            <%} %>
+
+        </table>
+        <button id="myBtn">change theme</button>
+</body>
+
+<script>
+     document.addEventListener('DOMContentLoaded',()=>{
+         document.getElementById('myBtn').addEventListener('click', (event) => {
+              document.getElementsByTagName('body')[0].style.backgroundColor = 'red'
+              window.localStorage.setItem('backgroundCLR','red')
+         })
+         const backgroundCLR = window.localStorage.getItem('backgroundCLR')
+
+         if(backgroundCLR === 'red'){
+            document.getElementsByTagName('body')[0].style.backgroundColor = 'red'
+         }
+
+     })
+
+   
+</script>
+
+</html>
